@@ -8,6 +8,10 @@ While the arrangement of definitions, theorems, and proofs here are closely para
 
 Much of the material in this text is duplicated in Lean's standard math library [Mathlib](https://leanprover-community.github.io/mathlib4_docs/), though with slightly different definitions.  To reconcile these discrepancies, this formalization will gradually transition from the textbook-provided definitions to the Mathlib-provided definitions as one progresses further into the text, thus sacrificing the self-containedness of the formalization in favor of compatibility with Mathlib.  For instance, Chapter 2 develops a theory of the natural numbers independent of Mathlib, but all subsequent chapters will use the Mathlib natural numbers instead.  (An epilogue to Chapter 2 is provided to show that the two notions of the natural numbers are isomorphic.)  As such, this formalization can also be used as an introduction to various portions of Mathlib.
 
+In order to align the formalization with Mathlib conventions, a small number of technical changes have been made to some of the definitions as compared with the textbook version.  Most notably:
+- Sequences are indexed to start from zero rather than from one, as Mathlib has much more support for the 0-based natural numbers `ℕ` than the 1-based natural numbers.
+- Many operations that are left undefined in the text, such as division by zero, or taking the formal limit of a non-Cauchy sequence, are instead assigned a "junk" value (e.g., `0`) to make the operation totally defined.  This is because Lean has better support for total functions than partial functions (indiscriminate use of the latter can lead into "dependent type hell" in which even very basic manipulations require quite subtle and delicate proofs).  See for instance [this blog post](https://xenaproject.wordpress.com/2020/07/05/division-by-zero-in-type-theory-a-faq/) by Kevin Buzzard for more discussion.
+
 Currently formalized sections:
 
 - [Section 2.1: The Peano axioms](https://teorth.github.io/analysis/docs/Analysis/Section_2_1.html)
@@ -24,12 +28,34 @@ Currently formalized sections:
 
 
 Other resources:
-- [Web page for this project](https://teorth.github.io/Analysis/)
+- [Web page for this project](https://teorth.github.io/analysis/)
 - [Web page for the book](https://terrytao.wordpress.com/books/analysis-i/)
   - [Springer edition](https://link.springer.com/book/10.1007/978-981-19-7261-4)
-- [How to run a project in Lean locally](https://leanprover-community.github.io/install/project.html)
-- [The natural number game](https://adam.math.hhu.de/)
-- [The Lean community](https://leanprover-community.github.io/)
-- [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/)
 - [Blog post announcing this project](https://terrytao.wordpress.com/2025/05/31/a-lean-companion-to-analysis-i/), Terence Tao, May 31 2025.
 - [Lean Zulip discussion about this project](https://leanprover.zulipchat.com/#narrow/channel/113488-general/topic/Lean.20companion.20to.20.22Analysis.20I.22.20-.20discussion/with/521458888)
+
+General Lean resources:
+- [The Lean community](https://leanprover-community.github.io/)
+  - [Lean4 web playground](https://live.lean-lang.org/)
+  - [How to run a project in Lean locally](https://leanprover-community.github.io/install/project.html)
+  - [The Lean community Zulip chat](https://leanprover.zulipchat.com/)
+  - [Learning Lean4](https://leanprover-community.github.io/learn.html)
+    - [The natural number game](https://adam.math.hhu.de/)
+    - [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/)  - Lean textbook by Jeremy Avigad and Patrick Massot
+- [Mathlib documentation](https://leanprover-community.github.io/mathlib4_docs/)
+  - [Moogle](https://moogle-morphlabs.vercel.app/) - semantic search engine for Mathlib
+  - [Loogle](https://loogle.lean-lang.org/) - expression matching search engine for Mathlib
+  - [LeanSearch](https://leansearch.net/) - Natural language search engine for Mathlib
+  - [List of Mathlib tactics](https://github.com/haruhisa-enomoto/mathlib4-all-tactics/blob/main/all-tactics.md)
+- Lean extensions:
+  - [Canonical](https://github.com/chasenorman/Canonical)
+  - [Duper](https://github.com/leanprover-community/duper)
+  - [LeanCopilot](https://github.com/lean-dojo/LeanCopilot)
+- [Common Lean pitfalls](https://github.com/nielsvoss/lean-pitfalls)
+- [Lean4 questions in Proof Stack Exchange](https://proofassistants.stackexchange.com/questions/tagged/lean4)
+- [The mechanics of proof](https://hrmacbeth.github.io/math2001/) - introductory Lean textbook by Heather Macbeth
+- [My Youtube channel](https://www.youtube.com/@TerenceTao27) has some demonstrations of various Lean formalization, using a variety of tools. 
+- A [broader list](https://docs.google.com/document/d/1kD7H4E28656ua8jOGZ934nbH2HcBLyxcRgFDduH5iQ0) of AI and formal mathematics resources.
+
+
+More resource suggestions welcome!
